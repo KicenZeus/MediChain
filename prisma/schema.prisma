@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Patient {
+  id            Int      @id @default(autoincrement())
+  blockIndex    Int      @unique
+  nama          String
+  umur          String
+  jenisKelamin  String
+  golonganDarah String
+  kondisiMedis  String
+  tanggalMasuk  String
+  tanggalKeluar String
+  dokter        String
+  rumahSakit    String
+  obat          String
+  hasilTest     String
+  biaya         String
+  asuransi      String
+  blockHash     String
+  prevHash      String
+  nonce         Int
+  timestamp     DateTime @default(now())
+  createdAt     DateTime @default(now())
+}
+
+model Wallet {
+  id         Int           @id @default(autoincrement())
+  address    String        @unique
+  name       String
+  balance    Int           @default(0)
+  createdAt  DateTime      @default(now())
+  sentTx     Transaction[] @relation("SentTx")
+  receivedTx Transaction[] @relation("ReceivedTx")
+}
+
+model Transaction {
+  id         Int      @id @default(autoincrement())
+  from       String
+  to         String
+  amount     Int
+  note       String   @default("")
+  fromWallet Wallet   @relation("SentTx",     fields: [from], references: [address])
+  toWallet   Wallet   @relation("ReceivedTx", fields: [to],   references: [address])
+  createdAt  DateTime @default(now())
+}
+
+model SmartContract {
+  id         String    @id
+  type       String
+  from       String
+  to         String
+  amount     Int
+  note       String    @default("")
+  conditions Json
+  status     String    @default("PENDING")
+  hash       String
+  log        Json      @default("[]")
+  executedAt DateTime?
+  createdAt  DateTime  @default(now())
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("dokter")
+  createdAt DateTime @default(now())
+}
