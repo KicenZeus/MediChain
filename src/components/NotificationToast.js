@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { pusherClient } from '@/lib/pusher';
 
 const ICONS = {
   PAYMENT    : '⬡',
@@ -18,24 +17,31 @@ export default function NotificationToast() {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    const channel = pusherClient.subscribe('medichain');
+    // Inisialisasi pusher di dalam useEffect (client only)
+    import('pusher-js').then(({ default: PusherJS }) => {
+      const pusher  = new PusherJS(process.env.NEXT_PUBLIC_PUSHER_KEY, {
+        cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
+      });
 
-    const addNotif = (data) => {
-      const id = Date.now();
-      setNotifications(prev => [{ ...data, id }, ...prev].slice(0, 5));
-      setTimeout(() => {
-        setNotifications(prev => prev.filter(n => n.id !== id));
-      }, 5000);
-    };
+      const channel = pusher.subscribe('medichain');
 
-    channel.bind('transaction',  addNotif);
-    channel.bind('new-patient',  addNotif);
-    channel.bind('contract',     addNotif);
+      const addNotif = (data) => {
+        const id = Date.now();
+        setNotifications(prev => [{ ...data, id }, ...prev].slice(0, 5));
+        setTimeout(() => {
+          setNotifications(prev => prev.filter(n => n.id !== id));
+        }, 5000);
+      };
 
-    return () => {
-      channel.unbind_all();
-      pusherClient.unsubscribe('medichain');
-    };
+      channel.bind('transaction',  addNotif);
+      channel.bind('new-patient',  addNotif);
+      channel.bind('contract',     addNotif);
+
+      return () => {
+        channel.unbind_all();
+        pusher.unsubscribe('medichain');
+      };
+    });
   }, []);
 
   if (notifications.length === 0) return null;

@@ -112,7 +112,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-6 text-center font-mono text-[0.6rem] tracking-widest uppercase text-[#2a2a2a]">
-          Universitas Muhammadiyah Ponorogo
+          MediChain
         </div>
       </div>
     </div>
