@@ -46,7 +46,7 @@ export default function DashboardCharts({ data }) {
     <div className="space-y-5">
 
       {/* Row 1 — Kondisi & Hasil Test */}
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
         {/* Bar Chart — Kondisi Medis */}
         <ChartCard title="Kondisi Medis Terbanyak">
@@ -85,7 +85,7 @@ export default function DashboardCharts({ data }) {
       </div>
 
       {/* Row 2 — Gender & Asuransi */}
-      <div className="grid grid-cols-2 gap-5">
+      <div cclassName="grid grid-cols-1 md:grid-cols-2 gap-5"lassName="grid grid-cols-2 gap-5">
 
         {/* Pie Chart — Gender */}
         <ChartCard title="Distribusi Gender">

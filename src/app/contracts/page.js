@@ -45,7 +45,7 @@ function ContractCard({ contract, onAction }) {
       </div>
 
       <div className="p-6">
-        <div className="mb-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
           {fields.map(f => (
             <div key={f.label}>
               <div className="mb-1 font-mono text-[0.56rem] tracking-widest uppercase text-[#7a7570]">{f.label}</div>
