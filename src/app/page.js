@@ -25,7 +25,7 @@ export default async function HomePage() {
         subtitle="Sistem manajemen data medis berbasis blockchain dengan token MED terintegrasi."
       />
 
-      <div className="mb-10 grid grid-cols-5 divide-x divide-[#2a2a2a] overflow-hidden rounded-xl border border-[#2a2a2a]">
+      <div className="mb-10 grid grid-cols-2 sm:grid-cols-5 divide-x divide-y sm:divide-y-0 divide-[#2a2a2a] overflow-hidden rounded-xl border border-[#2a2a2a]">
         <StatCard label="Total Blocks"    value={total + 1} desc="Termasuk genesis block" />
         <StatCard label="Pasien Tercatat" value={total}     desc="Data di blockchain"     />
         <StatCard label="Difficulty"      value="2"         desc="Proof of Work"          />
@@ -33,7 +33,7 @@ export default async function HomePage() {
         <StatCard label="Status"          value="Valid"     desc="Integritas chain" valueColor="#4CAF76" />
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {menuItems.map(item => (
           <Link key={item.href} href={item.href}
             className="group relative overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#111] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#C9A84C] hover:bg-[#181818]">

@@ -27,7 +27,7 @@ export default async function WalletPage() {
       />
 
       {/* Wallet Cards */}
-      <div className="mb-6 grid grid-cols-2 gap-4">
+      <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {wallets.map(w => (
           <div key={w.address}
             className="relative overflow-hidden rounded-2xl border border-[rgba(201,168,76,0.3)] bg-gradient-to-br from-[#111] to-[#1a1508] p-10">

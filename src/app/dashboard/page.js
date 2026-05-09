@@ -63,7 +63,7 @@ export default async function DashboardPage() {
       />
 
       {/* Summary Stats */}
-      <div className="mb-8 grid grid-cols-4 divide-x divide-[#2a2a2a] overflow-hidden rounded-xl border border-[#2a2a2a]">
+      <div className="mb-8 grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-[#2a2a2a] overflow-hidden rounded-xl border border-[#2a2a2a]">
         {summaryStats.map(s => (
           <div key={s.label} className="bg-[#111] p-7 hover:bg-[#181818] transition-colors">
             <div className="mb-2 font-mono text-[0.6rem] tracking-[0.2em] uppercase text-[#7a7570]">{s.label}</div>

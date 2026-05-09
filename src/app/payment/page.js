@@ -50,7 +50,7 @@ export default function PaymentPage() {
         subtitle="Kirim token MED antar wallet dalam ekosistem rumah sakit."
       />
 
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
         {/* Transfer Form */}
         <div className="rounded-xl border border-[#2a2a2a] bg-[#111]">
@@ -107,7 +107,7 @@ export default function PaymentPage() {
               <div className="mb-1 font-mono text-[0.56rem] tracking-widest uppercase text-[#7a7570]">Token Name</div>
               <div className="font-cormorant text-4xl font-light text-[#C9A84C]">MedCoin</div>
             </div>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {[
                 { label: 'Symbol',   value: 'MED'                  },
                 { label: 'Network',  value: 'MedChain'             },
