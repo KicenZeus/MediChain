@@ -25,12 +25,21 @@ export default async function HomePage() {
         subtitle="Sistem manajemen data medis berbasis blockchain dengan token MED terintegrasi."
       />
 
-      <div className="mb-10 grid grid-cols-2 sm:grid-cols-5 divide-x divide-y sm:divide-y-0 divide-[#2a2a2a] overflow-hidden rounded-xl border border-[#2a2a2a]">
+      <div className="mb-4 grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-[#2a2a2a] overflow-hidden rounded-xl border border-[#2a2a2a]">
         <StatCard label="Total Blocks"    value={total + 1} desc="Termasuk genesis block" />
         <StatCard label="Pasien Tercatat" value={total}     desc="Data di blockchain"     />
         <StatCard label="Difficulty"      value="2"         desc="Proof of Work"          />
         <StatCard label="Token"           value="MED"       desc="MedCoin currency"       />
-        <StatCard label="Status"          value="Valid"     desc="Integritas chain" valueColor="#4CAF76" />
+      </div>
+
+      {/* Status — full width di bawah */}
+      <div className="mb-8 overflow-hidden rounded-xl border border-[#2a2a2a]">
+        <StatCard
+          label="Status Chain"
+          value="Valid"
+          desc="Integritas blockchain terjamin"
+          valueColor="#4CAF76"
+        />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
