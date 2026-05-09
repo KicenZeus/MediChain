@@ -16,12 +16,12 @@ const links = [
 ];
 
 export default function NavBar() {
-  const pathname          = usePathname();
-  const { data: session } = useSession();
+  const pathname            = usePathname();
+  const { data: session }   = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-[#2a2a2a] bg-[rgba(8,8,8,0.95)] backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-[#2a2a2a] bg-[rgba(8,8,8,0.88)] backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-8">
 
         {/* Brand */}
@@ -29,7 +29,7 @@ export default function NavBar() {
           ⬡ MediChain
         </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Links — hidden on mobile */}
         <div className="hidden md:flex items-center gap-1">
           {links.map(link => (
             <Link key={link.href} href={link.href}
@@ -43,7 +43,7 @@ export default function NavBar() {
           ))}
         </div>
 
-        {/* Desktop Auth */}
+        {/* Desktop Auth — hidden on mobile */}
         <div className="hidden md:flex items-center gap-3">
           {session ? (
             <>
@@ -66,36 +66,34 @@ export default function NavBar() {
           )}
         </div>
 
-        {/* Mobile Right */}
+        {/* Mobile Hamburger — hidden on desktop */}
         <div className="flex md:hidden items-center gap-3">
           {session && (
-            <div className="font-mono text-[0.58rem] tracking-wider uppercase text-[#C9A84C]">
+            <span className="font-mono text-[0.58rem] tracking-wider uppercase text-[#C9A84C]">
               {session.user.role}
-            </div>
+            </span>
           )}
-          {/* Hamburger */}
-          <button onClick={() => setMenuOpen(!menuOpen)}
-            className="flex flex-col gap-1.5 p-2">
-            <span className={`block h-0.5 w-5 bg-[#C9A84C] transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block h-0.5 w-5 bg-[#C9A84C] transition-all ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block h-0.5 w-5 bg-[#C9A84C] transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <button onClick={() => setMenuOpen(!menuOpen)} className="flex flex-col gap-1.5 p-2">
+            <span className={`block h-0.5 w-5 bg-[#C9A84C] transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block h-0.5 w-5 bg-[#C9A84C] transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block h-0.5 w-5 bg-[#C9A84C] transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </button>
         </div>
 
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Dropdown Menu */}
       {menuOpen && (
         <div className="md:hidden border-t border-[#2a2a2a] bg-[#080808] px-4 py-4">
           <div className="flex flex-col gap-1">
             {links.map(link => (
               <Link key={link.href} href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`rounded-lg px-4 py-3 text-sm font-light tracking-widest uppercase transition-all
-                  ${pathname === link.href
+                className={`rounded-lg px-4 py-3 text-sm font-light tracking-widest uppercase transition-all ${
+                  pathname === link.href
                     ? 'bg-[rgba(201,168,76,0.12)] text-[#C9A84C]'
                     : 'text-[#7a7570] hover:bg-[rgba(201,168,76,0.08)] hover:text-[#C9A84C]'
-                  }`}>
+                }`}>
                 {link.label}
               </Link>
             ))}

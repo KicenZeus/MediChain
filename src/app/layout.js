@@ -38,10 +38,10 @@ export default async function RootLayout({ children }) {
       <body className="min-h-screen bg-[#080808] text-[#F5F0E8] antialiased">
         <SessionProvider session={session}>
           <NavBar />
-          <main className="mx-auto max-w-6xl px-4 md:px-8 py-8 md:py-16">
+          <main className="mx-auto max-w-6xl px-8 py-16">
             {children}
           </main>
-          <footer className="mx-auto max-w-6xl border-t border-[#2a2a2a] px-4 md:px-8 py-6">
+          <footer className="mx-auto max-w-6xl border-t border-[#2a2a2a] px-8 py-8">
             <div className="flex justify-between">
               <span className="font-cormorant text-sm tracking-widest text-[#7a7570]">
                 MediChain — Blockchain Rumah Sakit
